@@ -3,10 +3,11 @@ import { getFoodCategory } from "../resolvers/foodCategory/get-foodCategory.js";
 import { UpdateFoodCategory } from "../resolvers/foodCategory/update-foodCategory.js";
 import { DeletedbFoodCategory } from "../resolvers/foodCategory/delete-foodCategory.js";
 import { CreatedbFoodCategory } from "../resolvers/foodCategory/create-foodCategory.js";
+import { protect } from "../resolvers/middleware/authMiddleware.js";
 
 export const foodscategory = express.Router();
 
 foodscategory.get("/", getFoodCategory);
-foodscategory.post("/", CreatedbFoodCategory);
-foodscategory.put("/", UpdateFoodCategory);
-foodscategory.delete("/", DeletedbFoodCategory);
+foodscategory.post("/", protect, CreatedbFoodCategory);
+foodscategory.put("/", protect, UpdateFoodCategory);
+foodscategory.delete("/", protect, DeletedbFoodCategory);
